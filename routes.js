@@ -19,7 +19,7 @@ router.post('/short',async(req,res)=>{
 
   const urlExist= await Data.findOne({longUrl:req.body.longUrl});
   if(urlExist){
-   res.send("https://shrt-jivs.onrender.com"+urlExist.shortUrl);
+   res.send("https://shrt-jivs.onrender.com/"+urlExist.shortUrl);
     return;
   }
 
@@ -30,7 +30,7 @@ router.post('/short',async(req,res)=>{
 
        try{
          const saveData=await data.save();
-         res.send("https://shrt-jivs.onrender.com"+data.shortUrl);
+         res.send("https://shrt-jivs.onrender.com/"+data.shortUrl);
        }catch(err){
         res.status(400).send(err);
        }
@@ -51,7 +51,7 @@ router.post('/custom',async(req,res)=>{
        
        try{
          const saveData=await data.save();
-         res.send("https://shrt-jivs.onrender.com"+data.shortUrl);
+         res.send("https://shrt-jivs.onrender.com/"+data.shortUrl);
        }catch(err){
         res.status(400).send(err);
        }
