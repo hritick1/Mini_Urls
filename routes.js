@@ -1,8 +1,18 @@
 const router=require('express').Router();
 const Data=require('./model/Data');
 
-const generateRandom=()=>{
-  return  (Math.random() + 1).toString(36).substring(7);
+const generateRandom=async()=>{
+// const random=(Math.random() + 1).toString(36).substring(7);
+// const check=await Data.findOne({shortUrl:random});
+// if(check){generateRandom();}
+// return random;
+return random=(Math.random() + 1).toString(36).substring(7);
+}
+
+const checkCustom=async(custom)=>{
+     const customCheck=await Data.findOne({shortUrl:custom});
+     if(customCheck)  return true;
+     else return false;
 }
 
 router.post('/short',async(req,res)=>{
@@ -15,17 +25,39 @@ router.post('/short',async(req,res)=>{
 
        const data=new Data({
         longUrl:req.body.longUrl,
-        shortUrl:generateRandom()
+        shortUrl:await generateRandom()
        });
 
        try{
          const saveData=await data.save();
-         res.send(data.shortUrl);
+         res.send("localhost:3000/"+data.shortUrl);
        }catch(err){
         res.status(400).send(err);
        }
 });
 
+router.post('/custom',async(req,res)=>{
+    console.log(req.body.shortUrl);
+  const custom=await checkCustom(req.body.shortUrl);
+  if(custom){
+    res.send("ShortUrl Already Exists ,Please try someother");
+    return;
+  }
+  else{
+    const data=new Data({
+        longUrl:req.body.longUrl,
+        shortUrl:req.body.shortUrl
+       });
+       
+       try{
+         const saveData=await data.save();
+         res.send("localhost:3000/"+data.shortUrl);
+       }catch(err){
+        res.status(400).send(err);
+       }
+  }
+
+});
 
 
 router.get('/:shortUrl',async(req,res)=>{
