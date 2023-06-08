@@ -27,7 +27,8 @@ const generateRandom=async()=>{
   
          const data=new Data({
           longUrl:req.body.longUrl,
-          shortUrl:await generateRandom()
+          shortUrl:await generateRandom(),
+          visits:0
          });
   
          try{
@@ -67,10 +68,19 @@ const customUrl=async(req,res)=>{
 const redirectUrl=async(req,res)=>{
     const url=req.params.shortUrl;
 const short=await Data.findOne({shortUrl:url});
+console.log(short);
+await Data.findByIdAndUpdate(short._id,{visits:short.visits+1});
 if(short){
     res.redirect(short.longUrl);
 }
 };
 
-module.exports={shortUrl,customUrl,redirectUrl};
+const getAllShortUrl=async(req,res)=>{
+  const urls=await Data.find({});
+  res.send(urls);
+}
+
+
+
+module.exports={shortUrl,customUrl,redirectUrl,getAllShortUrl};
 

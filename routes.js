@@ -7,4 +7,6 @@ router.post('/custom',controller.customUrl);
 
 router.get('/:shortUrl',controller.redirectUrl);
 
+router.get("/",controller.getAllShortUrl);
+
 module.exports=router;

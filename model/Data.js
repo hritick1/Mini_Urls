@@ -11,10 +11,14 @@ const dataSchema=new mongoose.Schema({
     min:6,
     max:255
  },
+ visits:{
+   type:Number
+ },
  date:{
     type:Date,
     default:Date.now
  }
+
 });
 
 module.exports=mongoose.model('Data',dataSchema);
