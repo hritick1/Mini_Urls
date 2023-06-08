@@ -51,7 +51,9 @@ const customUrl=async(req,res)=>{
   else{
     const data=new Data({
         longUrl:req.body.longUrl,
-        shortUrl:req.body.shortUrl
+        shortUrl:req.body.shortUrl,
+        visits:0
+        
        });
        
        try{
