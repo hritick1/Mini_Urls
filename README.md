@@ -6,6 +6,9 @@ Deployment
 The project is deployed and accessible at: https://shrt-jivs.onrender.com/short for generating random short links
 and https://shrt-jivs.onrender.com/custom for generating custom short links.
 
+Frontend : This project is deployed at frontend : https://mini-urls-hritick1.vercel.app/
+Here you can access the frontend of this project.
+
 Random Short Link Generation
 To generate a random short link, follow these steps:
 
@@ -40,6 +43,7 @@ json
 {
   "message": "Custom short link created successfully"
 }
+One more thing you can do is at "/" you canview all the short Urls and their analytics
 Technologies Used
 Node.js: A JavaScript runtime used for building the server-side logic and API endpoints.
 Express.js: A web application framework for Node.js, used for creating robust and scalable web APIs.
